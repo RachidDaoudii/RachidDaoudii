@@ -1,4 +1,4 @@
-name: Latest blog post workflow
+name: Latest about me workflow
 on:
   schedule:
     # Runs every hour
@@ -7,11 +7,11 @@ on:
 
 jobs:
   update-readme-with-blog:
-    name: Update this repos README with latest blog posts
+    name: Update this repos README with latest about me
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: gautamkrishnar/blog-post-workflow@master
+      - uses: gautamkrishnar/about.workflow@master
         with:
           max_post_count: "4"
           feed_list: "https://dev.to/feed/About-me"
