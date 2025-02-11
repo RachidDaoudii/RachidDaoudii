@@ -2,7 +2,7 @@ name: Commit with Timestamp
 
 on:
   schedule:
-    - cron: '*/2 * * * *'  # Runs every 2 hours
+    - cron: '*/2 * * * *'  # Runs every 2 minutes
   workflow_dispatch:
 
 permissions:
@@ -15,8 +15,6 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set Up Git
         run: |
@@ -26,3 +24,9 @@ jobs:
       - name: Update Timestamp
         run: |
           echo "Last updated: $(date)" > timestamp.txt
+
+      - name: Commit and Push Changes
+        run: |
+          git add timestamp.txt
+          git commit -m "Update timestamp [$(date)]" || echo "No changes to commit"
+          git push
