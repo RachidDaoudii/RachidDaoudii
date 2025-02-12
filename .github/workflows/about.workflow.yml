@@ -1,32 +1,32 @@
-name: Commit with Timestamp
+# name: Commit with Timestamp
 
-on:
-  schedule:
-    - cron: '*/5 * * * *'  # Runs every 2 minutes
-  workflow_dispatch:
+# on:
+#   schedule:
+#     - cron: '*/5 * * * *'  # Runs every 2 minutes
+#   workflow_dispatch:
 
-permissions:
-  contents: write  # Allow pushing commits
+# permissions:
+#   contents: write  # Allow pushing commits
 
-jobs:
-  commit-time:
-    runs-on: ubuntu-latest
+# jobs:
+#   commit-time:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+#     steps:
+#       - name: Checkout Repository
+#         uses: actions/checkout@v4
 
-      - name: Set Up Git
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+#       - name: Set Up Git
+#         run: |
+#           git config --global user.name "github-actions[bot]"
+#           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Update Timestamp
-        run: |
-          echo "Last updated: $(date)" > timestamp.txt
+#       - name: Update Timestamp
+#         run: |
+#           echo "Last updated: $(date)" > timestamp.txt
 
-      - name: Commit and Push Changes
-        run: |
-          git add timestamp.txt
-          git commit -m "Update timestamp [$(date)]" || echo "No changes to commit"
-          git push
+#       - name: Commit and Push Changes
+#         run: |
+#           git add timestamp.txt
+#           git commit -m "Update timestamp [$(date)]" || echo "No changes to commit"
+#           git push
